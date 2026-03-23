@@ -1,0 +1,15 @@
+fastapi
+langchain
+autogen
+pandas
+sqlalchemy
+streamlit
+plotly
+jinja2
+langchain-openai
+openai
+python-dotenv
+uvicorn
+langchain_community
+snowflake-sqlalchemy
+snowflake-connector-python

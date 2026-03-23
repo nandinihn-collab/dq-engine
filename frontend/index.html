@@ -1,0 +1,330 @@
+<!--<<!DOCTYPE html>
+<html>
+    <link rel="icon" href="data:,">
+<head>
+    <title>Data Quality Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 25px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        iframe {
+            margin-top: 30px;
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .note {
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Quality Engine</h1>
+        <p>Run full data quality analysis from natural language.</p>
+
+        <label>Question</label>
+        <input id="question" placeholder="e.g. Show cancelled rides">
+
+        <label>Table Name</label>
+        <input id="table" value="NAND_DB.PUBLIC.UBER_RIDE_DETAILS">
+
+        <button onclick="runAnalysis()">Run Analysis</button>
+        
+        <div class="note">Report will load below.</div>
+
+        <iframe id="reportFrame"></iframe>
+    </div>
+
+    <script>
+        function runAnalysis() {
+            const question = document.getElementById('question').value;
+            const table = document.getElementById('table').value;
+
+            const url = `http://127.0.0.1:8000/run-analysis?question=${encodeURIComponent(question)}&table=${encodeURIComponent(table)}`;
+            document.getElementById('reportFrame').src = url;
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Quality Engine</title>
+    <style>
+        body { font-family: Arial; padding: 40px; }
+        input, button { padding: 10px; margin: 10px 0; width: 300px; }
+        iframe { width: 100%; height: 600px; border: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<h2>📊 Data Quality Engine</h2>
+
+<label>Table Name:</label><br>
+<input id="table" placeholder="NAND_DB.PUBLIC.UBER_RIDE_DETAILS"><br>
+
+<label>Question:</label><br>
+<input id="question" placeholder="Check data quality"><br>
+
+<button onclick="runAnalysis()">Run Analysis</button>
+
+<iframe id="reportFrame"></iframe>
+
+<script>
+function runAnalysis() {
+    const table = encodeURIComponent(document.getElementById('table').value);
+    const question = encodeURIComponent(document.getElementById('question').value);
+
+    const url = `http://127.0.0.1:8000/run-analysis?question=${question}&table=${table}`;
+    document.getElementById('reportFrame').src = url;
+}
+</script>
+
+</body>
+</html>
+
+
+!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Quality Engine</title>
+
+```
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 40px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0 15px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    iframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+        margin-top: 20px;
+        background: white;
+    }
+
+    .error {
+        color: red;
+        margin-top: 10px;
+        text-align: center;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<h2>📊 Data Quality Engine</h2>
+
+<div class="container">
+    <label>Table Name:</label>
+    <input id="table" placeholder="NAND_DB.PUBLIC.UBER_RIDE_DETAILS">
+
+    <label>Question:</label>
+    <input id="question" placeholder="Check data quality">
+
+    <button onclick="runAnalysis()">Run Analysis</button>
+
+    <div id="errorMsg" class="error"></div>
+</div>
+
+<iframe id="reportFrame"></iframe>
+
+<script>
+    function runAnalysis() {
+        const table = document.getElementById('table').value.trim();
+        const question = document.getElementById('question').value.trim();
+        const errorDiv = document.getElementById('errorMsg');
+
+        errorDiv.innerText = "";
+
+        if (!table || !question) {
+            errorDiv.innerText = "⚠️ Please enter both table name and question.";
+            return;
+        }
+
+        const url = `http://127.0.0.1:8000/run-analysis?question=${encodeURIComponent(question)}&table=${encodeURIComponent(table)}`;
+
+        console.log("Calling API:", url);
+
+        document.getElementById('reportFrame').src = url;
+    }
+</script>
+```
+
+</body>
+</html>-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Quality Engine</title>
+    <style>
+        body { font-family: Arial; padding: 40px; }
+        input, button { padding: 10px; margin: 10px 0; width: 300px; }
+        iframe { width: 100%; height: 600px; border: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<h2>📊 Data Quality Engine</h2>
+
+<label>Table Name:</label><br>
+<input id="table" placeholder="NAND_DB.PUBLIC.UBER_RIDE_DETAILS"><br>
+
+<label>Question:</label><br>
+<input id="question" placeholder="Check data quality"><br>
+
+<button onclick="runAnalysis()">Run Analysis</button>
+
+<iframe id="reportFrame"></iframe>
+
+<script>
+function runAnalysis() {
+    const table = encodeURIComponent(document.getElementById('table').value);
+    const question = encodeURIComponent(document.getElementById('question').value);
+
+    const url = `http://127.0.0.1:8000/run-analysis?question=${question}&table=${table}`;
+    document.getElementById('reportFrame').src = url;
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+<!--<<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Quality Engine</title>
+    <style>
+        body { font-family: Arial; padding: 40px; }
+        input, button { padding: 10px; margin: 10px 0; width: 300px; }
+        iframe { width: 100%; height: 600px; border: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<h2>📊 Data Quality Engine</h2>
+
+<label>Table Name:</label><br>
+<input id="table" value="NAND_DB.PUBLIC.UBER_RIDE_DETAILS"><br>
+
+<label>Question:</label><br>
+<input id="question" value="Check data quality"><br>
+
+<button onclick="runAnalysis()">Run Analysis</button>
+
+<iframe id="reportFrame"></iframe>
+
+<script>
+function runAnalysis() {
+    const table = encodeURIComponent(document.getElementById('table').value);
+    const question = encodeURIComponent(document.getElementById('question').value);
+
+    const url = `/run-analysis?question=${question}&table=${table}`;
+    document.getElementById('reportFrame').src = url;
+}
+</script>
+
+</body>
+</html>-->
